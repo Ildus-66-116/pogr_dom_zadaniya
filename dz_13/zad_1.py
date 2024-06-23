@@ -27,29 +27,38 @@ class Rectangle:
     """
 
     def __init__(self, width, height=None):
-        self.set_width(width)
-        self.set_height(height)
-
-    def set_width(self, width):
         if width <= 0:
-            raise NegativeValueError("Ширина должна быть положительной")
+            raise NegativeValueError(f"Ширина должна быть положительной, а не {width}")
         self._width = width
-
-    def set_height(self, height):
         if height is None:
-            self._height = self._width
-        elif height <= 0:
-            raise NegativeValueError("Высота должна быть положительной")
+            self._height = width
         else:
+            if height <= 0:
+                raise NegativeValueError(f"Высота должна быть положительной, а не {height}")
             self._height = height
 
     @property
     def width(self):
         return self._width
 
+    @width.setter
+    def width(self, value):
+        if value <= 0:
+            raise NegativeValueError(f"Ширина должна быть положительной, а не {value}")
+        self._width = value
+
     @property
     def height(self):
         return self._height
+
+    @height.setter
+    def height(self, value):
+        if value is None:
+            self._height = self._width
+        elif value <= 0:
+            raise NegativeValueError(f"Высота должна быть положительной, а не {value}")
+        else:
+            self._height = value
 
     def perimeter(self):
         """
@@ -144,5 +153,7 @@ class Rectangle:
 
 
 if __name__ == '__main__':
-    r = Rectangle(4, 4)
-    r.width = -3
+    r = Rectangle(-4, 5)
+    # r.width = 3
+    # r.height = 2
+    # print(r)
