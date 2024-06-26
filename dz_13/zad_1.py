@@ -153,7 +153,7 @@ class Rectangle:
 
 
 if __name__ == '__main__':
-    r = Rectangle(-4, 5)
-    # r.width = 3
-    # r.height = 2
-    # print(r)
+    r1 = Rectangle(5)
+    r2 = Rectangle(3, 4)
+    r3 = r1 - r2
+    print(r3.width, r3.height)
